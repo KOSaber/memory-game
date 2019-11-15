@@ -39,6 +39,9 @@ var cardsInPlay;
 //console.log("User flipped king");
 
 function checkForMatch(){
+
+this.setAttribute('src', cards[cardId].cardImage);
+
 if (cardsInPlay[0] === cardsInPlay[1]) {
   console.log("You found a match!");
 } else {
@@ -46,7 +49,9 @@ if (cardsInPlay[0] === cardsInPlay[1]) {
 }
 };
 
-function flipCard (cardId){
+function flipCard (){
+
+cardId = this.getAttribute('data-id');
 
 console.log("user flipped  " + cards[cardId].rank);
 cardsInPlay.push(cards[cardId].rank);
@@ -65,8 +70,8 @@ else
 
 };
 
-flipCard(0);
-flipCard(2);
+//flipCard(0);
+//flipCard(2);
 
 /*if (cardsInPlay.length===2) {
 	console.log;
@@ -75,4 +80,21 @@ alert("You found a match!");
 }else{
 	alert( "Sorry, try again.");
 } */
+
+function createBoard(){
+
+for (var i = 0; i < cards.length; i++) {
+    var cardElement = document.createElement('img');
+    cardElement.setAttribute('src', "images/back.png");
+    cardElement.setAttribute('data-id', i);
+    cardElement.addEventListener('click', flipCard);
+  
+  
+    cardElement.appendChild(document.getElementById('game-board'));
+
+	};
+};
+
+createBoard();
+
 
